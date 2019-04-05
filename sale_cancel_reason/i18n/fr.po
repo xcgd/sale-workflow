@@ -48,7 +48,7 @@ msgstr "Sélectionner le motif d'annulation de la commande."
 #. module: sale_cancel_reason
 #: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmer"
 
 #. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_create_uid
