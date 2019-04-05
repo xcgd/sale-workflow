@@ -117,7 +117,7 @@ msgstr "Motif d'annulation"
 #: model:ir.actions.act_window,name:sale_cancel_reason.action_sale_order_cancel
 #: model:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
 msgid "Reason for the cancellation"
-msgstr ""
+msgstr "Motif d'annulation"
 
 #. module: sale_cancel_reason
 #: model:ir.actions.act_window,name:sale_cancel_reason.action_sale_order_cancel_reason
