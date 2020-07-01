@@ -8,6 +8,9 @@ class SaleOrder(models.Model):
 
     def _get_order_type(self):
         """Keep the method to default in case the partner doesn't have any"""
+        default_type_id = self.env.context.get('default_type_id')
+        if default_type_id:
+            return self.env['sale.order.type'].browse(default_type_id)
         return self.env['sale.order.type'].search([], limit=1)
 
     type_id = fields.Many2one(
