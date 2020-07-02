@@ -8,7 +8,7 @@
 
 {
     "name": "Sale Order Type",
-    "version": "11.0.1.4.3",
+    "version": "11.0.1.5.0",
     "category": "Sales Management",
     "author": "Grupo Vermon,"
               "AvanzOSC,"
@@ -22,6 +22,7 @@
         'sale_stock',
         'account',
         'sale_management',
+        'base_view_inheritance_extension',  # OCA/server-tools
     ],
     "demo": [
         "demo/sale_order_demo.xml",

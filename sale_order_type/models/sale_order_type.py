@@ -46,6 +46,16 @@ class SaleOrderTypology(models.Model):
         comodel_name='sale.order.type.rule', inverse_name='order_type_id',
         copy=True)
 
+    def add_rules_to_domain(self, domain):
+        """Add conditions set on rules to the specified product domain.
+        :type domain: List
+        :rtype: List
+        """
+        self.ensure_one()
+        for rule in self.rule_ids:
+            domain = rule.add_to_domain(domain)
+        return domain
+
     @api.multi
     def matches_order(self, order):
         self.ensure_one()
