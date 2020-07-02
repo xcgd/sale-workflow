@@ -143,3 +143,88 @@ class TestSaleOrderTypeRule(common.TransactionCase):
         invoice.match_order_type()
 
         self.assertEqual(invoice.sale_type_id, self.sale_type_prod)
+
+    def test_add_rules_to_domain(self):
+        """Tests around the add_rules_to_domain method."""
+
+        def checkDomain(sale_type, initial_domain, expected_domain):
+            self.assertEqual(sale_type.add_rules_to_domain(initial_domain),
+                             expected_domain)
+
+        # Test domains used below.
+        empty_domain = []
+        sale_domain = [('sale_ok', '=', True)]
+        complex_domain = [
+            ('foo', '=', 'bar'),
+            '|', ('c1', '=', 1), ('c2', '=', 2),
+        ]
+
+        # No rules.
+        sale_type = self.create_sale_type("Empty")
+        checkDomain(sale_type, empty_domain, empty_domain)
+        checkDomain(sale_type, sale_domain, sale_domain)
+        checkDomain(sale_type, complex_domain, complex_domain)
+
+        # Rules on products.
+        sale_type = self.sale_type_prod
+        product_id = self.product1.id
+        checkDomain(sale_type, empty_domain, [
+            ('id', 'in', [product_id]),
+        ])
+        checkDomain(sale_type, sale_domain, [
+            '&',
+            ('sale_ok', '=', True),
+            ('id', 'in', [product_id]),
+        ])
+        checkDomain(sale_type, complex_domain, [
+            '&', '&',
+            ('foo', '=', 'bar'),
+            '|', ('c1', '=', 1), ('c2', '=', 2),
+            ('id', 'in', [product_id]),
+        ])
+
+        # Rules on categories.
+        sale_type = self.sale_type_categ
+        category_id = self.product_category.id
+        checkDomain(sale_type, empty_domain, [
+            ('categ_id', 'in', [category_id]),
+        ])
+        checkDomain(sale_type, sale_domain, [
+            '&',
+            ('sale_ok', '=', True),
+            ('categ_id', 'in', [category_id]),
+        ])
+        checkDomain(sale_type, complex_domain, [
+            '&', '&',
+            ('foo', '=', 'bar'),
+            '|', ('c1', '=', 1), ('c2', '=', 2),
+            ('categ_id', 'in', [category_id]),
+        ])
+
+        # Rules on both products & categories (OR between them).
+        sale_type = self.create_sale_type("Both")
+        sale_type.write({'rule_ids': [(0, 0, {
+            'name': 'Product',
+            'product_ids': [(4, self.product1.id)],
+            'product_category_ids': [(4, self.product_category.id)],
+        })]})
+        checkDomain(sale_type, empty_domain, [
+            '|',
+            ('categ_id', 'in', [category_id]),
+            ('id', 'in', [product_id]),
+        ])
+        checkDomain(sale_type, sale_domain, [
+            '&',
+            ('sale_ok', '=', True),
+            '|',
+            ('categ_id', 'in', [category_id]),
+            ('id', 'in', [product_id]),
+        ])
+        checkDomain(sale_type, complex_domain, [
+            '&', '&',
+            ('foo', '=', 'bar'),
+            '|', ('c1', '=', 1), ('c2', '=', 2),
+            '|',
+            ('categ_id', 'in', [category_id]),
+            ('id', 'in', [product_id]),
+        ])

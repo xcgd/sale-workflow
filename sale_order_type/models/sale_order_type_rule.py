@@ -19,6 +19,34 @@ class SaleOrderTypeRule(models.Model):
         comodel_name='product.category',
         string='Product categories')
 
+    def add_to_domain(self, domain):
+        """Add conditions set on this rule to the specified product domain.
+        :type domain: List
+        :rtype: List
+        """
+
+        rule_domains = []
+
+        categories = self.product_category_ids
+        if categories:
+            rule_domains.append(models.expression.normalize_domain([
+                ('categ_id', 'in', categories.ids),
+            ]))
+
+        products = self.product_ids
+        if products:
+            rule_domains.append(models.expression.normalize_domain([
+                ('id', 'in', products.ids),
+            ]))
+
+        if rule_domains:
+            # OR between products & categories.
+            # AND between the specified domain and the one we add.
+            domain = models.expression.normalize_domain(domain)
+            rule_domains = models.expression.OR(rule_domains)
+            domain = models.expression.AND([domain, rule_domains])
+        return domain
+
     @api.multi
     def matches_order(self, order):
         """Return True if the rule matches the order,
