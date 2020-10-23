@@ -69,7 +69,8 @@ class TestSaleOrderTypeRule(common.TransactionCase):
         return {
             'partner_id': self.partner.id,
             'order_line': [(0, 0, sale_line_vals)
-                           for sale_line_vals in sale_line_vals_list]
+                           for sale_line_vals in sale_line_vals_list],
+            'warehouse_id': self.env.ref('stock.warehouse0'),
         }
 
     def prepare_invoice_vals(self, product_ids):
