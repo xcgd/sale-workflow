@@ -35,6 +35,12 @@
                         <page string="Rules" name="rules">
                             <field name="rule_ids" nolabel="1"/>
                         </page>
+                        <page string="Other Information" name="other">
+                            <group>
+                                <field name="mail_template_id" />
+                                <field name="ir_actions_report_id" />
+                            </group>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
