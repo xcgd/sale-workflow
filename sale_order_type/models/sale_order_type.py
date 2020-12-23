@@ -46,6 +46,14 @@ class SaleOrderTypology(models.Model):
         comodel_name='sale.order.type.rule', inverse_name='order_type_id',
         copy=True)
 
+    mail_template_id = fields.Many2one(
+        comodel_name="mail.template", string="Use template"
+    )
+
+    ir_actions_report_id = fields.Many2one(
+        comodel_name="ir.actions.report", string="Use report"
+    )
+
     def add_rules_to_domain(self, domain):
         """Add conditions set on rules to the specified product domain.
         :type domain: List
