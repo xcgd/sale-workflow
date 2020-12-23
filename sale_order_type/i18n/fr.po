@@ -242,3 +242,18 @@ msgstr "sale.order.type.rule"
 
 #~ msgid "Sales Order"
 #~ msgstr "Bon de commande"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_mail_template_id
+msgid "Use template"
+msgstr "Utiliser un modèle"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_ir_actions_report_id
+msgid "Use report"
+msgstr "Utiliser un rapport"
+
+#. module: sale_order_type
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
+msgid "Documents"
+msgstr "Documents"
