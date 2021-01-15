@@ -76,6 +76,21 @@
                     key="sale_type">parent.type_id</attribute>
             </xpath>
 
+            <!-- Add a confirmation dialog box onto the "Send by email" buttons (there
+                are 4 of these). -->
+            <xpath expr="//button[@name='action_quotation_send'][1]" position="attributes">
+                <attribute name="confirm">An email is about to be sent. Continue?</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_quotation_send'][2]" position="attributes">
+                <attribute name="confirm">An email is about to be sent. Continue?</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_quotation_send'][3]" position="attributes">
+                <attribute name="confirm">An email is about to be sent. Continue?</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_quotation_send'][4]" position="attributes">
+                <attribute name="confirm">An email is about to be sent. Continue?</attribute>
+            </xpath>
+
         </field>
     </record>
 

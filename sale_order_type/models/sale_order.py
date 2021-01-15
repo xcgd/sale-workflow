@@ -92,3 +92,50 @@ class SaleOrder(models.Model):
         if self.type_id:
             res['sale_type_id'] = self.type_id.id
         return res
+
+    @api.multi
+    def action_quotation_send(self):
+        """Send an email about this quotation / sales order.
+
+        By default in the "sale" module, this opens a preview dialog box; we
+        bypass that to directly send the right email.
+        We have added a confirmation dialog box view-side though.
+        """
+
+        self.ensure_one()  # Ref: * addons/sale/sale.py
+
+        mail_template = None
+        if self.type_id.mail_template_id:
+            mail_template = self.type_id.mail_template_id
+
+        if not mail_template:
+            return super(SaleOrder, self).action_quotation_send()
+
+        # Refs: * addons/mail/models/mail_template.py, "send_mail" method.
+        #       * addons/mail/models/ir_actions.py, "run_action_email" method.
+        email_context = self.env.context.copy()
+        email_context.pop("default_type", None)
+        mail_template.with_context(email_context).send_mail(
+            self.id, force_send=True, raise_exception=True
+        )
+
+        return True
+
+    @api.multi
+    def print_quotation(self):
+        """Print the quotation / sales order and mark it as sent.
+
+        Override this method defined in the "sale" module:
+        - "Print" button: Use our own reports & don't mark as sent.
+        """
+        for so in self:
+            report_xml = None
+            if so.type_id.ir_actions_report_id:
+                report_xml = so.type_id.ir_actions_report_id
+
+            if report_xml:
+                return report_xml.report_action(self)
+
+        # Default case: Still call the parent (won't actually happen in the
+        # production env).
+        return super(SaleOrder, self).print_quotation()

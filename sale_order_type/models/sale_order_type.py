@@ -47,11 +47,26 @@ class SaleOrderTypology(models.Model):
         copy=True)
 
     mail_template_id = fields.Many2one(
-        comodel_name="mail.template", string="Use template"
+        comodel_name="mail.template",
+        string="Quotation/Order mail template",
+        help="Choose a mail template for quotations/orders.",
     )
 
     ir_actions_report_id = fields.Many2one(
-        comodel_name="ir.actions.report", string="Use report"
+        comodel_name="ir.actions.report",
+        string="Quotation/order document template",
+        help="Choose a document template.",
+    )
+
+    invoice_mail_template_id = fields.Many2one(
+        comodel_name="mail.template",
+        string="Invoice mail template",
+        help="Choose a mail template for the invoice.",
+    )
+
+    send_invoice_mail_automatically = fields.Boolean(
+        string="Send invoice mail automatically",
+        help="If checked, send the invoice mail template automatically",
     )
 
     def add_rules_to_domain(self, domain):

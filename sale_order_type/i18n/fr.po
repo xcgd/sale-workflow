@@ -10,21 +10,36 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-27 03:53+0000\n"
-"PO-Revision-Date: 2020-06-29 14:24+0000\n"
-"Last-Translator: Houzéfa Abbasbhay <houzefa.abba@xcg-consulting.fr>\n"
+"PO-Revision-Date: 2021-01-15 19:12+0100\n"
+"Last-Translator: Damien Habets <damien.habets@xcg-consulting.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Poedit 2.3\n"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_journal_id
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Billing Journal"
 msgstr "Journal de facturation"
+
+#. module: sale_order_type
+#: model:ir.model.fields,help:sale_order_type.field_sale_order_type_ir_actions_report_id
+msgid "Choose a document template."
+msgstr "Choisir un modèle de document."
+
+#. module: sale_order_type
+#: model:ir.model.fields,help:sale_order_type.field_sale_order_type_mail_template_id
+msgid "Choose a mail template for quotations/orders."
+msgstr "Choisir un modèle d'email de devis/commande."
+
+#. module: sale_order_type
+#: model:ir.model.fields,help:sale_order_type.field_sale_order_type_invoice_mail_template_id
+msgid "Choose a mail template for the invoice."
+msgstr "Choisir un modèle d'email de facture."
 
 #. module: sale_order_type
 #: model:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
@@ -65,6 +80,11 @@ msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: sale_order_type
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
+msgid "Emails & documents"
+msgstr "Emails & documents"
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_sequence_id
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Entry Sequence"
@@ -88,6 +108,11 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_order_type
+#: model:ir.model.fields,help:sale_order_type.field_sale_order_type_send_invoice_mail_automatically
+msgid "If checked, send the invoice mail template automatically"
+msgstr "Si cochée, envoyer automatiquement le modèle d'email de facture"
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_incoterm_id
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Incoterm"
@@ -97,6 +122,11 @@ msgstr "Incoterm"
 #: model:ir.model,name:sale_order_type.model_account_invoice
 msgid "Invoice"
 msgstr "Facture"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_invoice_mail_template_id
+msgid "Invoice mail template"
+msgstr "Modèle d'email factures"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type___last_update
@@ -149,6 +179,11 @@ msgid "Pricelist"
 msgstr "Liste de prix"
 
 #. module: sale_order_type
+#: model:ir.model,name:sale_order_type.model_product_product
+msgid "Product"
+msgstr "Produit"
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_product_category_ids
 msgid "Product categories"
 msgstr "Catégories d'articles"
@@ -162,6 +197,16 @@ msgstr "Articles"
 #: model:ir.model,name:sale_order_type.model_sale_order
 msgid "Quotation"
 msgstr "Devis"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_mail_template_id
+msgid "Quotation/Order mail template"
+msgstr "Modèle d'email devis/commandes"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_ir_actions_report_id
+msgid "Quotation/order document template"
+msgstr "Modèle de document devis/commandes"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_ids
@@ -196,6 +241,11 @@ msgid "Sales Order Types"
 msgstr "Types de bons de commande"
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_send_invoice_mail_automatically
+msgid "Send invoice mail automatically"
+msgstr "Envoyer l'email de facture automatiquement"
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_sequence
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_sequence
 msgid "Sequence"
@@ -210,11 +260,12 @@ msgstr "Politique d'expédition"
 #. module: sale_order_type
 #: model:ir.model.fields,help:sale_order_type.field_sale_order_type_company_id
 msgid "The company is automatically set from your user preferences."
-msgstr ""
-"La société est automatiquement définie selon vos préférences utilisateur."
+msgstr "La société est automatiquement définie selon vos préférences utilisateur."
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id_7104
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id_14857
+#: model:ir.ui.view,arch_db:sale_order_type.sot_invoice_search
+#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_search
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_tree_view
@@ -237,23 +288,20 @@ msgstr "Entrepôt"
 msgid "sale.order.type.rule"
 msgstr "sale.order.type.rule"
 
+#~ msgid "Quotation/Order invoice mail template"
+#~ msgstr "Modèle d'email devis/commandes"
+
+#~ msgid "Use template"
+#~ msgstr "Utiliser un modèle"
+
+#~ msgid "Use report"
+#~ msgstr "Utiliser un rapport"
+
+#~ msgid "Documents"
+#~ msgstr "Documents"
+
 #~ msgid "Partner"
 #~ msgstr "Partenaire"
 
 #~ msgid "Sales Order"
 #~ msgstr "Bon de commande"
-
-#. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_mail_template_id
-msgid "Use template"
-msgstr "Utiliser un modèle"
-
-#. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_ir_actions_report_id
-msgid "Use report"
-msgstr "Utiliser un rapport"
-
-#. module: sale_order_type
-#: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
-msgid "Documents"
-msgstr "Documents"
