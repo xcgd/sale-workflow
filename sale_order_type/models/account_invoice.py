@@ -42,3 +42,46 @@ class AccountInvoice(models.Model):
                     invoice.sale_type_id = order_type
                     invoice.onchange_sale_type_id()
                     break
+
+    @api.multi
+    def invoice_validate(self):
+        """Override to:
+        - Send automatically an email at validation if specified.
+        """
+
+        for invoice in self:
+            if(
+                invoice.sale_type_id
+                and invoice.sale_type_id.send_invoice_mail_automatically
+            ):
+                invoice.action_invoice_sent()
+
+        return super(AccountInvoice, self).invoice_validate()
+
+    @api.multi
+    def action_invoice_sent(self):
+        """Send an email about this invoice.
+
+        By default in the "account" module, this opens a preview dialog box; we
+        bypass that to directly send the right email (mustached so no
+        previews). We have added a confirmation dialog box view-side though.
+        """
+
+        self.ensure_one()
+
+        mail_template = None
+        if self.sale_type_id and self.sale_type_id.invoice_mail_template_id:
+            mail_template = self.sale_type_id.invoice_mail_template_id
+
+        if not mail_template:
+            return super(AccountInvoice, self).action_invoice_sent()
+
+        # Refs: * addons/mail/models/mail_template.py, "send_mail" method.
+        #       * addons/mail/models/ir_actions.py, "run_action_email" method.
+        email_context = self.env.context.copy()
+        email_context.pop("default_type", None)
+        mail_template.with_context(email_context).send_mail(
+            self.id, force_send=True, raise_exception=True
+        )
+
+        return True
