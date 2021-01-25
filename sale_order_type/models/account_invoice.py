@@ -85,3 +85,14 @@ class AccountInvoice(models.Model):
         )
 
         return True
+
+    def _get_refund_common_fields(self):
+        """Provide fields to copy when a new invoice is created upon refund.
+        Called from the refund dialog box, see
+        ``account/wizard/account_invoice.refund.py``.
+        :rtype: List.
+        """
+
+        return super(AccountInvoice, self)._get_refund_common_fields() + [
+            "sale_type_id",
+        ]
