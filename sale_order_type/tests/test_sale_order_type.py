@@ -129,6 +129,13 @@ class TestSaleOrderType(common.TransactionCase):
         order = self.create_sale_order(partner=self.partner_child_1)
         self.assertEqual(order.type_id, self.sale_type)
 
+        context = dict(default_type_id=self.sale_type_route.id)
+        sale_form = Form(self.env["sale.order"].with_context(context))
+        self.assertEqual(sale_form.type_id, self.sale_type_route)
+        sale_form.partner_id = self.partner
+        order = sale_form.save()
+        self.assertEqual(order.type_id, self.sale_type_route)
+
     def test_invoice_onchange_type(self):
         sale_type = self.sale_type
         invoice = self.create_invoice()
