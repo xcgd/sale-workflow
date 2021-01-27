@@ -28,16 +28,29 @@ class SaleOrder(models.Model):
 
     @api.model
     def _default_type_id(self):
-        return self.env["sale.order.type"].search(
-            [("company_id", "in", [self.env.company.id, False])], limit=1
-        )
+        return self.load_default_type_id() or self.env[
+            "sale.order.type"
+        ].search([("company_id", "in", [self.env.company.id, False])], limit=1)
+
+    @api.model
+    def load_default_type_id(self):
+        default_type_id = self.env.context.get("default_type_id")
+        if default_type_id:
+            type_id = self.env["sale.order.type"].browse(default_type_id)
+        else:
+            type_id = False
+        return type_id
 
     @api.depends("partner_id", "company_id")
     def _compute_sale_type_id(self):
         for record in self:
+            default_sale_type = self.load_default_type_id()
             if not record.partner_id:
-                record.type_id = self.env["sale.order.type"].search(
-                    [("company_id", "in", [self.env.company.id, False])], limit=1
+                record.type_id = default_sale_type or self.env[
+                    "sale.order.type"
+                ].search(
+                    [("company_id", "in", [self.env.company.id, False])],
+                    limit=1,
                 )
             else:
                 sale_type = (
@@ -47,6 +60,7 @@ class SaleOrder(models.Model):
                     or record.partner_id.commercial_partner_id.with_context(
                         force_company=record.company_id.id
                     ).sale_type
+                    or default_sale_type
                 )
                 if sale_type:
                     record.type_id = sale_type
