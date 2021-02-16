@@ -1,15 +1,52 @@
 <odoo>
+
+    <!-- Inherit from the client invoice search view. -->
+    <record id="sot_invoice_search" model="ir.ui.view">
+        <field name="name">sot_invoice_search</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="arch" type="xml">
+
+            <field name='journal_id' position="after">
+                <field name="sale_type_id" />
+            </field>
+
+            <xpath expr="//group" position="inside">
+                <filter name="group_by_sale_type" string="Type"
+                    context="{'group_by': 'sale_type_id'}" />
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- Inherit from the client invoice list view. -->
+    <record id="sot_invoice_list" model="ir.ui.view">
+        <field name="name">sot_invoice_list</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree" />
+        <field name="arch" type="xml">
+
+            <field name='name' position="after">
+                <field name="sale_type_id" />
+            </field>
+
+        </field>
+    </record>
+
+    <!-- Inherit from the client invoice form view. -->
     <record id="sot_invoice_form" model="ir.ui.view">
         <field name="name">account.move.form.sot</field>
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
+
             <field name="journal_id" position="before">
                 <field
                     name="sale_type_id"
                     attrs="{'invisible': [('type', 'not in', ['out_invoice', 'out_refund'])]}"
                 />
             </field>
+
         </field>
     </record>
 </odoo>
