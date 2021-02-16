@@ -54,9 +54,31 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
 
+            <xpath expr="//button[@name='action_quotation_send'][2]"
+                position="after">
+                <button name="print_quotation" string="Print" type="object"
+                    states="draft" class="btn-primary"/>
+            </xpath>
+
+            <!-- Add a confirmation dialog box onto the "Send by email" buttons (there
+                are 4 of these). -->
+            <xpath expr="//button[@name='action_quotation_send'][1]" position="attributes">
+                <attribute name="confirm">An email is about to be sent. Continue?</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_quotation_send'][2]" position="attributes">
+                <attribute name="confirm">An email is about to be sent. Continue?</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_quotation_send'][3]" position="attributes">
+                <attribute name="confirm">An email is about to be sent. Continue?</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_quotation_send'][4]" position="attributes">
+                <attribute name="confirm">An email is about to be sent. Continue?</attribute>
+            </xpath>
+
             <field name="currency_id" position="after">
                 <field name="type_id" required="1" />
             </field>
+
         </field>
 
     </record>
