@@ -47,6 +47,15 @@
                 />
             </field>
 
+            <!-- Add a confirmation dialog box onto the "Send by email" buttons (there
+                are 2 of these). -->
+            <xpath expr="//button[@name='action_invoice_sent'][1]" position="attributes">
+                <attribute name="confirm">An email is about to be sent. Continue?</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_invoice_sent'][2]" position="attributes">
+                <attribute name="confirm">An email is about to be sent. Continue?</attribute>
+            </xpath>
+
         </field>
     </record>
 </odoo>
