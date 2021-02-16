@@ -49,7 +49,7 @@
                         <field name="description" nolabel="1" />
                     </group>
                     <notebook>
-                        <page string="Other Information" name="other">
+                        <page string="Documents" name="documents">
                             <group>
                                 <field name="mail_template_id" />
                                 <field name="ir_actions_report_id" />
