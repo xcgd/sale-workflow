@@ -71,3 +71,11 @@ class SaleOrderTypology(models.Model):
     )
     active = fields.Boolean(default=True)
     quotation_validity_days = fields.Integer(string="Quotation Validity (Days)")
+
+    mail_template_id = fields.Many2one(
+        comodel_name="mail.template", string="Use template"
+    )
+
+    ir_actions_report_id = fields.Many2one(
+        comodel_name="ir.actions.report", string="Use report"
+    )
