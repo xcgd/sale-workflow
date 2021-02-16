@@ -17,6 +17,7 @@ class TestSaleOrderType(common.TransactionCase):
         )
         self.partner = self.env.ref("base.res_partner_1")
         country = self.partner.country_id
+        # replace partner to validated it properly
         self.partner = self.env["res.partner"].create(
             {
                 "name": "test partner one",
@@ -26,7 +27,12 @@ class TestSaleOrderType(common.TransactionCase):
             }
         )
         self.partner_child_1 = self.env["res.partner"].create(
-            {"name": "Test child", "parent_id": self.partner.id, "sale_type": False, "city": "a city"}
+            {
+                    "name": "Test child",
+                 "parent_id": self.partner.id,
+                 "sale_type": False,
+                 "city": "a city"
+            }
         )
         self.sequence = self.env["ir.sequence"].create(
             {
@@ -139,7 +145,13 @@ class TestSaleOrderType(common.TransactionCase):
         self.assertEqual(order.type_id, self.sale_type)
 
         partner = self.env["res.partner"].create(
-            {"name": "Test - No sale type", "sale_type": False, "city": "a city", "country_id": self.partner.country_id.id, "street": "A nice street"}
+            {
+                 "name": "Test - No sale type",
+                 "sale_type": False,
+                 "city": "a city",
+                 "country_id": self.partner.country_id.id,
+                 "street": "A nice street"
+            }
         )
         context = dict(default_type_id=self.sale_type_route.id)
         sale_form = Form(self.env["sale.order"].with_context(context))
