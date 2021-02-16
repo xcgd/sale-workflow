@@ -59,3 +59,11 @@ class SaleOrderTypology(models.Model):
         ondelete="restrict",
         check_company=True,
     )
+
+    mail_template_id = fields.Many2one(
+        comodel_name="mail.template", string="Use template"
+    )
+
+    ir_actions_report_id = fields.Many2one(
+        comodel_name="ir.actions.report", string="Use report"
+    )
