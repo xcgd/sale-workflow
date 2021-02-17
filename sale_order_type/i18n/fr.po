@@ -21,10 +21,8 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_order_type
-#: code:addons/sale_order_type/models/sale.py:0
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_invoice_form
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_view_order_form
-#, python-format
 msgid "An email is about to be sent. Continue?"
 msgstr "Un courriel est sur le point d'être envoyé. Souhaitez-vous poursuivre ?"
 
