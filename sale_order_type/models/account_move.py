@@ -46,10 +46,11 @@ class AccountMove(models.Model):
     @api.onchange("sale_type_id")
     def onchange_sale_type_id(self):
         # TODO: To be changed to computed stored readonly=False if possible in v14?
-        if self.sale_type_id.payment_term_id:
-            self.invoice_payment_term_id = self.sale_type_id.payment_term_id.id
-        if self.sale_type_id.journal_id:
-            self.journal_id = self.sale_type_id.journal_id.id
+        sales_type = self.sale_type_id.sudo()
+        if sales_type.payment_term_id:
+            self.invoice_payment_term_id = sales_type.payment_term_id.id
+        if sales_type.journal_id:
+            self.journal_id = sales_type.journal_id.id
 
     def post(self):
         """Override to:
