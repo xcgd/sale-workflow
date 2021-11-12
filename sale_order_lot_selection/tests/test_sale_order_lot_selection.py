@@ -1,7 +1,8 @@
 # © 2015 Agile Business Group
+# Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 import odoo.tests.common as test_common
-from odoo.exceptions import UserError
 
 
 class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
@@ -17,10 +18,16 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
 
         """
         super(TestSaleOrderLotSelection, self).setUp()
-        self.product_57 = self.env.ref("product.product_product_6")
+        self.product_57 = self.env.ref("product.product_product_6").copy(
+            {"type": "consu"}
+        )
         self.product_57.tracking = "lot"
-        self.product_46 = self.env.ref("product.product_product_13")
-        self.product_12 = self.env.ref("product.product_product_12")
+        self.product_46 = self.env.ref("product.product_product_13").copy(
+            {"type": "consu"}
+        )
+        self.product_12 = self.env.ref("product.product_product_12").copy(
+            {"type": "consu"}
+        )
         self.supplier_location = self.env.ref("stock.stock_location_suppliers")
         self.customer_location = self.env.ref("stock.stock_location_customers")
         self.stock_location = self.env.ref("stock.stock_location_stock")
@@ -259,8 +266,13 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.sol3.lot_id = lot10.id
         # I'll try to confirm it to check lot reservation:
         # lot10 was delivered by order1
-        with self.assertRaises(UserError):
-            self.order3.action_confirm()
+        lot10_qty_available = self._stock_quantity(
+            self.product_57, lot10, self.stock_location
+        )
+        self.order3.action_confirm()
+        self.assertEqual(self.order3.state, "sale")
+        # products are not available for reservation (lot unavailable)
+        self.assertEqual(self.order3.picking_ids[0].state, "confirmed")
 
         # also test on_change for order2
         onchange_res = self.sol2a._onchange_product_id_set_lot_domain()
@@ -289,5 +301,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.assertEqual(lot12_qty_available, 0)
         # I'll try to confirm it to check lot reservation:
         # lot11 has 1 availability and order4 has quantity 2
-        with self.assertRaises(UserError):
-            self.order4.action_confirm()
+        self.order4.action_confirm()
+        self.assertEqual(self.order4.state, "sale")
+        # products are reserved
+        self.assertEqual(self.order4.picking_ids[0].state, "assigned")

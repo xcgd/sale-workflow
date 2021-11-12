@@ -6,7 +6,7 @@
 import logging
 from contextlib import contextmanager
 
-from odoo import api, models
+from odoo import api, fields, models
 from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
@@ -54,6 +54,20 @@ class AutomaticWorkflowJob(models.Model):
         sale.action_confirm()
         return "{} {} confirmed successfully".format(sale.display_name, sale)
 
+    def _do_send_order_confirmation_mail(self, sale):
+        """Send order confirmation mail, while filtering to make sure the order is
+        confirmed with _do_validate_sale_order() function"""
+        if not self.env["sale.order"].search_count(
+            [("id", "=", sale.id), ("state", "=", "sale")]
+        ):
+            return "{} {} job bypassed".format(sale.display_name, sale)
+        if sale.user_id:
+            sale = sale.with_user(sale.user_id)
+        sale._send_order_confirmation_mail()
+        return "{} {} send order confirmation mail successfully".format(
+            sale.display_name, sale
+        )
+
     @api.model
     def _validate_sale_orders(self, order_filter):
         sale_obj = self.env["sale.order"]
@@ -62,6 +76,8 @@ class AutomaticWorkflowJob(models.Model):
         for sale in sales:
             with savepoint(self.env.cr), force_company(self.env, sale.company_id):
                 self._do_validate_sale_order(sale, order_filter)
+                if self.env.context.get("send_order_confirmation_mail"):
+                    self._do_send_order_confirmation_mail(sale)
 
     def _do_create_invoice(self, sale, domain_filter):
         """Create an invoice for a sales order, filter ensure no duplication"""
@@ -140,11 +156,47 @@ class AutomaticWorkflowJob(models.Model):
             with savepoint(self.env.cr), force_company(self.env, sale.company_id):
                 self._do_sale_done(sale, sale_done_filter)
 
+    def _prepare_dict_account_payment(self, invoice):
+        partner_type = (
+            invoice.type in ("out_invoice", "out_refund") and "customer" or "supplier"
+        )
+        communication = (
+            invoice.name
+            if invoice.type in ("out_invoice", "out_refund")
+            else invoice.reference
+        )
+        return {
+            "invoice_ids": [(6, 0, invoice.ids)],
+            "amount": invoice.residual,
+            "payment_date": fields.Date.context_today(self),
+            "communication": communication,
+            "partner_id": invoice.partner_id.id,
+            "partner_type": partner_type,
+        }
+
+    @api.model
+    def _register_payments(self, payment_filter):
+        invoice_obj = self.env["account.move"]
+        invoices = invoice_obj.search(payment_filter)
+        _logger.debug("Invoices to Register Payment: %s", invoices.ids)
+        for invoice in invoices:
+            self._register_payment_invoice(invoice)
+        return
+
+    def _register_payment_invoice(self, invoice):
+        with savepoint(self.env.cr):
+            payment = self.env["account.payment"].create(
+                self._prepare_dict_account_payment(invoice)
+            )
+            payment.post()
+
     @api.model
     def run_with_workflow(self, sale_workflow):
         workflow_domain = [("workflow_process_id", "=", sale_workflow.id)]
         if sale_workflow.validate_order:
-            self._validate_sale_orders(
+            self.with_context(
+                send_order_confirmation_mail=sale_workflow.send_order_confirmation_mail
+            )._validate_sale_orders(
                 safe_eval(sale_workflow.order_filter_id.domain) + workflow_domain
             )
         if sale_workflow.validate_picking:
@@ -164,6 +216,11 @@ class AutomaticWorkflowJob(models.Model):
         if sale_workflow.sale_done:
             self._sale_done(
                 safe_eval(sale_workflow.sale_done_filter_id.domain) + workflow_domain
+            )
+
+        if sale_workflow.register_payment:
+            self._register_payments(
+                safe_eval(sale_workflow.payment_filter_id.domain) + workflow_domain
             )
 
     @api.model
