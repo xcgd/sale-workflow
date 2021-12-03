@@ -48,6 +48,16 @@
                     <group>
                         <field name="description" nolabel="1" />
                     </group>
+                    <notebook>
+                        <page string="Emails &amp; documents" name="documents">
+                            <group>
+                                <field name="mail_template_id" />
+                                <field name="ir_actions_report_id" />
+                                <field name="invoice_mail_template_id" />
+                                <field name="send_invoice_mail_automatically" />
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
