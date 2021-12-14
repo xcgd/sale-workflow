@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-27 03:53+0000\n"
+"POT-Creation-Date: 2021-12-14 14:54+0000\n"
 "PO-Revision-Date: 2018-01-27 03:53+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>, 2017\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
@@ -35,11 +35,31 @@ msgstr ""
 msgid "Archived"
 msgstr ""
 
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_invoice_form
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_view_order_form
+msgid "An email is about to be sent. Continue?"
+msgstr ""
+
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__journal_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Billing Journal"
 msgstr "Dnevnik za račune"
+
+#. module: sale_order_type
+#: model:ir.model.fields,help:sale_order_type.field_sale_order_type__ir_actions_report_id
+msgid "Choose a document template."
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,help:sale_order_type.field_sale_order_type__mail_template_id
+msgid "Choose a mail template for quotations/orders."
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,help:sale_order_type.field_sale_order_type__invoice_mail_template_id
+msgid "Choose a mail template for the invoice."
+msgstr ""
 
 #. module: sale_order_type
 #: model_terms:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
@@ -77,6 +97,11 @@ msgid "Display Name"
 msgstr "Naziv za prikaz"
 
 #. module: sale_order_type
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
+msgid "Emails & documents"
+msgstr ""
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__sequence_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Entry Sequence"
@@ -93,10 +118,20 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_order_type
+#: model:ir.model.fields,help:sale_order_type.field_sale_order_type__send_invoice_mail_automatically
+msgid "If checked, send the invoice mail template automatically"
+msgstr ""
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__incoterm_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Incoterm"
 msgstr "Incoterm"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__invoice_mail_template_id
+msgid "Invoice mail template"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_account_move
@@ -150,6 +185,23 @@ msgid "Quotation Validity (Days)"
 msgstr ""
 
 #. module: sale_order_type
+#: code:addons/sale_order_type/models/sale.py:0
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_view_order_form
+#, python-format
+msgid "Print"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__mail_template_id
+msgid "Quotation/Order mail template"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__ir_actions_report_id
+msgid "Quotation/order document template"
+msgstr ""
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__route_id
 msgid "Route"
 msgstr ""
@@ -184,6 +236,11 @@ msgid "Sales Order Types"
 msgstr "Vrste ponuda"
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__send_invoice_mail_automatically
+msgid "Send invoice mail automatically"
+msgstr ""
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__picking_policy
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Shipping Policy"
@@ -191,6 +248,8 @@ msgstr "Način otpreme"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__type_id
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_invoice_search
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_search
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Type"
