@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-27 03:53+0000\n"
+"POT-Creation-Date: 2021-12-14 14:54+0000\n"
 "PO-Revision-Date: 2021-12-03 14:15+0000\n"
 "Last-Translator: Vincent Hatakeyama <vincent+github@hatakeyama.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
@@ -24,7 +24,8 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_invoice_form
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_view_order_form
 msgid "An email is about to be sent. Continue?"
-msgstr "Un courriel est sur le point d'être envoyé. Souhaitez-vous poursuivre ?"
+msgstr ""
+"Un courriel est sur le point d'être envoyé. Souhaitez-vous poursuivre ?"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__journal_id
@@ -194,7 +195,6 @@ msgid "Sale Order Type"
 msgstr "Type de bon de commande"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_account_file_document__sale_type_id
 #: model:ir.model.fields,field_description:sale_order_type.field_account_move__sale_type_id
 msgid "Sale Type"
 msgstr "Type de vente"
@@ -229,7 +229,8 @@ msgstr "Politique d'expédition"
 #. module: sale_order_type
 #: model:ir.model.fields,help:sale_order_type.field_sale_order_type__company_id
 msgid "The company is automatically set from your user preferences."
-msgstr "La société est automatiquement définie selon vos préférences utilisateur."
+msgstr ""
+"La société est automatiquement définie selon vos préférences utilisateur."
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__type_id
