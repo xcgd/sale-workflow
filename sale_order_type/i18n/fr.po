@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-27 03:53+0000\n"
-"PO-Revision-Date: 2021-01-15 19:12+0100\n"
+"POT-Creation-Date: 2022-03-30 09:45+0000\n"
+"PO-Revision-Date: 2022-03-30 12:16+0200\n"
 "Last-Translator: Damien Habets <damien.habets@xcg-consulting.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
@@ -21,10 +21,21 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 
 #. module: sale_order_type
+#: model:ir.ui.view,arch_db:sale_order_type.sot_invoice_form
+#: model:ir.ui.view,arch_db:sale_order_type.sot_view_order_form
+msgid "An email is about to be sent. Continue?"
+msgstr "Un e-mail va être envoyé. Continuer ?"
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_journal_id
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Billing Journal"
 msgstr "Journal de facturation"
+
+#. module: sale_order_type
+#: model:ir.model.fields,help:sale_order_type.field_sale_order_type_invoice_ir_actions_report_id
+msgid "Choose a document template for the invoice."
+msgstr "Choisir un modèle de document pour la facture."
 
 #. module: sale_order_type
 #: model:ir.model.fields,help:sale_order_type.field_sale_order_type_ir_actions_report_id
@@ -124,6 +135,11 @@ msgid "Invoice"
 msgstr "Facture"
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_invoice_ir_actions_report_id
+msgid "Invoice document template"
+msgstr "Modèle de document factures"
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_invoice_mail_template_id
 msgid "Invoice mail template"
 msgstr "Modèle d'email factures"
@@ -163,6 +179,11 @@ msgid "Order Type"
 msgstr "Type de commande"
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_res_users_is_paid_by_keyaccount
+msgid "Paid By Key Account"
+msgstr "Payé par l'organisme"
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_payment_term_id
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Payment Term"
@@ -180,8 +201,8 @@ msgstr "Liste de prix"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_product_product
-msgid "Product"
-msgstr "Produit"
+msgid "Product (Formalities)"
+msgstr "Articles (Formalités)"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_rule_product_category_ids
@@ -287,6 +308,9 @@ msgstr "Entrepôt"
 #: model:ir.model,name:sale_order_type.model_sale_order_type_rule
 msgid "sale.order.type.rule"
 msgstr "sale.order.type.rule"
+
+#~ msgid "Product"
+#~ msgstr "Produit"
 
 #~ msgid "Quotation/Order invoice mail template"
 #~ msgstr "Modèle d'email devis/commandes"

@@ -4,48 +4,63 @@ from odoo import api, fields, models
 
 
 class SaleOrderTypology(models.Model):
-    _name = 'sale.order.type'
-    _description = 'Type of sale order'
-    _order = 'sequence'
+    _name = "sale.order.type"
+    _description = "Type of sale order"
+    _order = "sequence"
 
     @api.model
     def _get_domain_sequence_id(self):
-        seq_type = self.env.ref('sale.seq_sale_order')
-        return [('code', '=', seq_type.code)]
+        seq_type = self.env.ref("sale.seq_sale_order")
+        return [("code", "=", seq_type.code)]
 
     @api.model
     def _get_selection_picking_policy(self):
-        return self.env['sale.order'].fields_get(
-            allfields=['picking_policy'])['picking_policy']['selection']
+        return self.env["sale.order"].fields_get(allfields=["picking_policy"])[
+            "picking_policy"
+        ]["selection"]
 
     def default_picking_policy(self):
-        default_dict = self.env['sale.order'].default_get(['picking_policy'])
-        return default_dict.get('picking_policy')
+        default_dict = self.env["sale.order"].default_get(["picking_policy"])
+        return default_dict.get("picking_policy")
 
-    name = fields.Char(string='Name', required=True, translate=True)
-    description = fields.Text(string='Description', translate=True)
+    name = fields.Char(string="Name", required=True, translate=True)
+    description = fields.Text(string="Description", translate=True)
     sequence_id = fields.Many2one(
-        comodel_name='ir.sequence', string='Entry Sequence', copy=False,
-        domain=_get_domain_sequence_id)
+        comodel_name="ir.sequence",
+        string="Entry Sequence",
+        copy=False,
+        domain=_get_domain_sequence_id,
+    )
     journal_id = fields.Many2one(
-        comodel_name='account.journal', string='Billing Journal',
-        domain=[('type', '=', 'sale')])
+        comodel_name="account.journal",
+        string="Billing Journal",
+        domain=[("type", "=", "sale")],
+    )
     warehouse_id = fields.Many2one(
-        comodel_name='stock.warehouse', string='Warehouse')
+        comodel_name="stock.warehouse", string="Warehouse"
+    )
     picking_policy = fields.Selection(
-        selection='_get_selection_picking_policy', string='Shipping Policy',
-        default=default_picking_policy)
+        selection="_get_selection_picking_policy",
+        string="Shipping Policy",
+        default=default_picking_policy,
+    )
     company_id = fields.Many2one(
-        'res.company',
-        related='warehouse_id.company_id', store=True, readonly=True)
-    payment_term_id = fields.Many2one('account.payment.term', 'Payment Term')
-    pricelist_id = fields.Many2one('product.pricelist', 'Pricelist')
-    incoterm_id = fields.Many2one('stock.incoterms', 'Incoterm')
+        "res.company",
+        related="warehouse_id.company_id",
+        store=True,
+        readonly=True,
+    )
+    payment_term_id = fields.Many2one("account.payment.term", "Payment Term")
+    pricelist_id = fields.Many2one("product.pricelist", "Pricelist")
+    incoterm_id = fields.Many2one("stock.incoterms", "Incoterm")
     sequence = fields.Integer(default=10)
     rule_ids = fields.One2many(
-        comodel_name='sale.order.type.rule', inverse_name='order_type_id',
-        copy=True)
+        comodel_name="sale.order.type.rule",
+        inverse_name="order_type_id",
+        copy=True,
+    )
 
+    # Emails & documents page
     mail_template_id = fields.Many2one(
         comodel_name="mail.template",
         string="Quotation/Order mail template",
@@ -62,6 +77,12 @@ class SaleOrderTypology(models.Model):
         comodel_name="mail.template",
         string="Invoice mail template",
         help="Choose a mail template for the invoice.",
+    )
+
+    invoice_ir_actions_report_id = fields.Many2one(
+        comodel_name="ir.actions.report",
+        string="Invoice document template",
+        help="Choose a document template for the invoice.",
     )
 
     send_invoice_mail_automatically = fields.Boolean(
