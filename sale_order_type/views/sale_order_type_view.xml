@@ -32,9 +32,6 @@
                         <field name="description" nolabel="1" />
                     </group>
                     <notebook>
-                        <page string="Rules" name="rules">
-                            <field name="rule_ids" nolabel="1"/>
-                        </page>
                         <page string="Emails &amp; documents" name="documents">
                             <group>
                                 <field name="mail_template_id" />
@@ -43,8 +40,12 @@
                             </group>
                             <group>
                                 <field name="ir_actions_report_id" />
-                                <field name="invoice_ir_actions_report_id" />
+                                <field name="invoice_report_id" />
+                                <field name="publishing_fee_invoice_report_id" />
                             </group>
+                        </page>
+                        <page string="Rules" name="rules">
+                            <field name="rule_ids" nolabel="1"/>
                         </page>
                     </notebook>
                 </sheet>
