@@ -60,6 +60,13 @@ class SaleOrderTypology(models.Model):
         copy=True,
     )
 
+    # Optional. To define the default validity date
+    validity_date_offset = fields.Integer(
+        string="Validity date offset",
+        default=0,
+        help="(optional) Number of days to calculate the default validity date.",
+    )
+
     # Emails
     mail_template_id = fields.Many2one(
         comodel_name="mail.template",

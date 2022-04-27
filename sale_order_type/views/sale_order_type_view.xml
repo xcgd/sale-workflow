@@ -21,6 +21,7 @@
                             <field name="sequence_id" />
                         </group>
                         <group>
+                            <field name="validity_date_offset" />
                             <field name="journal_id" />
                             <field name="picking_policy" />
                             <field name="payment_term_id" />
