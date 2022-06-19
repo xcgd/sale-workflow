@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-27 14:30+0000\n"
-"PO-Revision-Date: 2022-04-27 16:32+0200\n"
+"POT-Creation-Date: 2022-06-19 15:59+0000\n"
+"PO-Revision-Date: 2022-06-19 18:14+0200\n"
 "Last-Translator: Damien Habets <damien.habets@xcg-consulting.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
@@ -23,7 +23,9 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model.fields,help:sale_order_type.field_sale_order_type_validity_date_offset
 msgid "(optional) Number of days to calculate the default validity date."
-msgstr "(facultatif) Nombre de jours pour calculer la date de fin de validité par défaut."
+msgstr ""
+"(facultatif) Nombre de jours pour calculer la date de fin de validité par "
+"défaut."
 
 #. module: sale_order_type
 #: model:ir.ui.view,arch_db:sale_order_type.sot_invoice_form
@@ -36,6 +38,11 @@ msgstr "Un e-mail va être envoyé. Continuer ?"
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Billing Journal"
 msgstr "Journal de facturation"
+
+#. module: sale_order_type
+#: model:ir.model.fields,help:sale_order_type.field_sale_order_type_consolidated_invoice_report_id
+msgid "Choose a document template for the consolidated invoice."
+msgstr "Choisir un modèle de document pour la facture consolidée."
 
 #. module: sale_order_type
 #: model:ir.model.fields,help:sale_order_type.field_sale_order_type_invoice_report_id
@@ -71,6 +78,11 @@ msgstr "Cliquer pour définir un nouveau type sur cette commande de vente."
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_company_id
 msgid "Company"
 msgstr "Société"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_consolidated_invoice_report_id
+msgid "Consolidated invoice document template"
+msgstr "Modèle de document pour factures consolidées"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_partner
@@ -189,11 +201,6 @@ msgid "Order Type"
 msgstr "Type de commande"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_res_users_is_paid_by_keyaccount
-msgid "Paid By Key Account"
-msgstr "Payé par l'organisme"
-
-#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_payment_term_id
 #: model:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Payment Term"
@@ -296,7 +303,8 @@ msgstr "Politique d'expédition"
 #. module: sale_order_type
 #: model:ir.model.fields,help:sale_order_type.field_sale_order_type_company_id
 msgid "The company is automatically set from your user preferences."
-msgstr "La société est automatiquement définie selon vos préférences utilisateur."
+msgstr ""
+"La société est automatiquement définie selon vos préférences utilisateur."
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type_id_14857

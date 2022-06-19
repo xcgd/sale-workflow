@@ -43,6 +43,7 @@
                                 <field name="ir_actions_report_id" />
                                 <field name="invoice_report_id" />
                                 <field name="publishing_fee_invoice_report_id" />
+                                <field name="consolidated_invoice_report_id" />
                             </group>
                         </page>
                         <page string="Rules" name="rules">

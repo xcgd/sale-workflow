@@ -104,6 +104,12 @@ class SaleOrderTypology(models.Model):
         help="Choose a document template for the publishing fee invoice.",
     )
 
+    consolidated_invoice_report_id = fields.Many2one(
+        comodel_name="ir.actions.report",
+        string="Consolidated invoice document template",
+        help="Choose a document template for the consolidated invoice.",
+    )
+
     def add_rules_to_domain(self, domain):
         """Add conditions set on rules to the specified product domain.
         :type domain: List
