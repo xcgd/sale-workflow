@@ -21,8 +21,23 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__active
+msgid "Active"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_account_id
+msgid "Analytic account"
+msgstr ""
+
+#. module: sale_order_type
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
+msgid "Archived"
+msgstr ""
+
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_invoice_form
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_view_order_form
+#, python-format
 msgid "An email is about to be sent. Continue?"
 msgstr ""
 "Un courriel est sur le point d'être envoyé. Souhaitez-vous poursuivre ?"
@@ -167,6 +182,11 @@ msgid "Pricelist"
 msgstr "Tarif"
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__quotation_validity_days
+msgid "Quotation Validity (Days)"
+msgstr ""
+
+#. module: sale_order_type
 #: code:addons/sale_order_type/models/sale.py:0
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_view_order_form
 #, python-format
@@ -227,12 +247,6 @@ msgid "Shipping Policy"
 msgstr "Politique d'expédition"
 
 #. module: sale_order_type
-#: model:ir.model.fields,help:sale_order_type.field_sale_order_type__company_id
-msgid "The company is automatically set from your user preferences."
-msgstr ""
-"La société est automatiquement définie selon vos préférences utilisateur."
-
-#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__type_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_invoice_search
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_search
@@ -252,17 +266,6 @@ msgstr "Type de bon de commande"
 msgid "Warehouse"
 msgstr "Entrepôt"
 
-#~ msgid "Documents"
-#~ msgstr "Documents"
-
-#~ msgid "Use report"
-#~ msgstr "Utiliser un rapport"
-
-#~ msgid "Sales Order Type"
-#~ msgstr "Type de bon de commande"
-
-#~ msgid "Invoice"
-#~ msgstr "Facture"
-
-#~ msgid "Partner"
-#~ msgstr "Partenaire"
+#~ msgid "The company is automatically set from your user preferences."
+#~ msgstr ""
+#~ "La société est automatiquement définie selon vos préférences utilisateur."

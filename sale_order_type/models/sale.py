@@ -1,6 +1,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 
+from datetime import datetime, timedelta
 from lxml import etree
 
 from odoo import _, api, fields, models
@@ -24,13 +25,14 @@ class SaleOrder(models.Model):
         default=lambda so: so._default_type_id(),
         ondelete="restrict",
         copy=True,
+        check_company=True,
     )
 
     @api.model
     def _default_type_id(self):
         return self.load_default_type_id() or self.env[
             "sale.order.type"
-        ].search([], limit=1)
+        ].search([("company_id", "in", [self.env.company.id, False])], limit=1)
 
     @api.model
     def load_default_type_id(self):
@@ -64,6 +66,8 @@ class SaleOrder(models.Model):
                 )
                 if sale_type:
                     record.type_id = sale_type
+                else:  # HACK: Avoid CacheMiss when no sale_type is set
+                    record.type_id = record.type_id
 
     @api.onchange("type_id")
     def onchange_type_id(self):
@@ -83,6 +87,17 @@ class SaleOrder(models.Model):
                 vals.update({"pricelist_id": order_type.pricelist_id})
             if order_type.incoterm_id:
                 vals.update({"incoterm": order_type.incoterm_id})
+            if order_type.analytic_account_id:
+                vals.update({"analytic_account_id": order_type.analytic_account_id})
+            if order_type.quotation_validity_days:
+                vals.update(
+                    {
+                        "validity_date": fields.Date.to_string(
+                            datetime.now()
+                            + timedelta(order_type.quotation_validity_days)
+                        )
+                    }
+                )
             if vals:
                 order.update(vals)
             # Order line values
