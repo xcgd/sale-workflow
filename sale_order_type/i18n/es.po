@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-14 14:54+0000\n"
+"POT-Creation-Date: 2022-10-20 09:22+0000\n"
 "PO-Revision-Date: 2022-01-20 23:39+0100\n"
 "Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
@@ -20,19 +20,10 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__active
-msgid "Active"
-msgstr "Activo"
-
-#. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_account_id
-msgid "Analytic account"
-msgstr "Cuenta analítica"
-
-#. module: sale_order_type
-#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
-msgid "Archived"
-msgstr "Archivado"
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_invoice_form
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_view_order_form
+msgid "An email is about to be sent. Continue?"
+msgstr ""
 
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_invoice_form
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_view_order_form
@@ -185,8 +176,20 @@ msgid "Pricelist"
 msgstr "Tarifa"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__quotation_validity_days
-msgid "Quotation Validity (Days)"
+#: code:addons/sale_order_type/models/sale.py:0
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_view_order_form
+#, python-format
+msgid "Print"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__mail_template_id
+msgid "Quotation/Order mail template"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__ir_actions_report_id
+msgid "Quotation/order document template"
 msgstr ""
 
 #. module: sale_order_type
@@ -218,6 +221,7 @@ msgid "Sale Order Type"
 msgstr "Tipo de pedido de venta"
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_account_file_document__sale_type_id
 #: model:ir.model.fields,field_description:sale_order_type.field_account_move__sale_type_id
 msgid "Sale Type"
 msgstr "Tipo de venta"
@@ -268,6 +272,15 @@ msgstr "Tipo de pedido de venta"
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr "Almacén"
+
+#~ msgid "Active"
+#~ msgstr "Activo"
+
+#~ msgid "Analytic account"
+#~ msgstr "Cuenta analítica"
+
+#~ msgid "Archived"
+#~ msgstr "Archivado"
 
 #~ msgid "The company is automatically set from your user preferences."
 #~ msgstr ""

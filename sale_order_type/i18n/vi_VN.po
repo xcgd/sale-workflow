@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-14 14:54+0000\n"
+"POT-Creation-Date: 2022-10-20 09:22+0000\n"
 "PO-Revision-Date: 2016-11-22 23:46+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
 "Language-Team: Vietnamese (Viet Nam) (https://www.transifex.com/oca/"
@@ -20,20 +20,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__active
-msgid "Active"
-msgstr ""
-
-#. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_account_id
-msgid "Analytic account"
-msgstr ""
-
-#. module: sale_order_type
-#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
-msgid "Archived"
-msgstr ""
-
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_invoice_form
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_view_order_form
 msgid "An email is about to be sent. Continue?"
@@ -43,6 +29,26 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__journal_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Billing Journal"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,help:sale_order_type.field_sale_order_type__ir_actions_report_id
+msgid "Choose a document template."
+msgstr ""
+
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_invoice_form
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_view_order_form
+msgid "An email is about to be sent. Continue?"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,help:sale_order_type.field_sale_order_type__mail_template_id
+msgid "Choose a mail template for quotations/orders."
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,help:sale_order_type.field_sale_order_type__invoice_mail_template_id
+msgid "Choose a mail template for the invoice."
 msgstr ""
 
 #. module: sale_order_type
@@ -179,8 +185,20 @@ msgid "Pricelist"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__quotation_validity_days
-msgid "Quotation Validity (Days)"
+#: code:addons/sale_order_type/models/sale.py:0
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_view_order_form
+#, python-format
+msgid "Print"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__mail_template_id
+msgid "Quotation/Order mail template"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__ir_actions_report_id
+msgid "Quotation/order document template"
 msgstr ""
 
 #. module: sale_order_type
@@ -212,6 +230,7 @@ msgid "Sale Order Type"
 msgstr ""
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_account_file_document__sale_type_id
 #: model:ir.model.fields,field_description:sale_order_type.field_account_move__sale_type_id
 msgid "Sale Type"
 msgstr ""

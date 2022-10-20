@@ -5,10 +5,10 @@
     "name": "Sale payment sheet",
     "summary": "Allow to create invoice payments to commercial users without "
     "accounting permissions",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.2.0",
     "development_status": "Beta",
     "category": "Account",
-    "website": "https://github.com/OCA/sale-workflow/",
+    "website": "https://github.com/OCA/sale-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "maintainers": ["sergio-teruel"],
     "license": "AGPL-3",
