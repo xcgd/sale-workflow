@@ -32,8 +32,10 @@ class TestSaleOrderType(common.TransactionCase):
             'account.account_payment_term_immediate')
         self.sale_pricelist = self.env.ref('product.list0')
         self.free_carrier = self.env.ref('stock.incoterm_FCA')
+        email_template = self.env.ref("sale.email_template_edi_sale")
         self.sale_type = self.sale_type_model.create({
             'name': 'Test Sale Order Type',
+            'mail_template_id': email_template.id,
             'sequence_id': self.sequence.id,
             'journal_id': self.journal.id,
             'warehouse_id': self.warehouse.id,
@@ -55,6 +57,14 @@ class TestSaleOrderType(common.TransactionCase):
             'partner_id': self.partner.id,
             'order_line': [(0, 0, sale_line_dict)]
         }
+
+    def test_sale_order_quotation_send(self):
+        order_vals = self.get_sale_order_vals()
+        order = self.sale_order_model.create(order_vals)
+        order.onchange_partner_id()
+        self.assertEqual(order.state, "draft")
+        order.action_quotation_send()
+        self.assertEqual(order.state, "sent")
 
     def test_sale_order_confirm(self):
         sale_type = self.sale_type

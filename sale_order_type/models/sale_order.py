@@ -127,6 +127,10 @@ class SaleOrder(models.Model):
             self.id, force_send=True, raise_exception=True
         )
 
+        # Manually mark as sent; normally the base code does this via context
+        # trick (mark_so_as_sent).
+        if self.state == "draft":
+            self.state = "sent"
         return True
 
     @api.multi
